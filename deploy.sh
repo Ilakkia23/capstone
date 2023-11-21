@@ -6,7 +6,8 @@ build_and_push_dev_image() {
     docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
     # Run build script to build Docker image
-    ./build.sh
+    sh 'chmod +x build.sh'
+    sh './build.sh'
 
     # Tag the built image
     docker tag myreactimg  $DOCKERHUB_USERNAME/dev
