@@ -35,7 +35,7 @@ if [ $GIT_BRANCH == "origin/dev" ]; then
     echo "Building and deploying to dev branch..."
     build_and_push_dev_image
 elif [ $GIT_BRANCH == "origin/main" ]; then
-    echo "Building and deploying to dev branch..."
+    echo "Building and deploying to prod branch..."
     build_and_push_prod_image
 else
     echo "Branch is not dev. No deployment will be done."
