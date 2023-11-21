@@ -16,7 +16,7 @@ build_and_push_dev_image() {
 }
 
 # Check if the branch is dev
-if [ "$BRANCH_NAME" = "dev" ]; then
+if [ "$GIT_BRANCH" = "dev" ]; then
     echo "Building and deploying to dev branch..."
     build_and_push_dev_image
 else
