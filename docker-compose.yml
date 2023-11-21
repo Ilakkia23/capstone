@@ -1,0 +1,7 @@
+version: '3'  
+
+services:     
+  web:      
+    image: myreactimg:latest  
+    ports:
+      - "80:80"
