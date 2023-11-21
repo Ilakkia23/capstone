@@ -9,10 +9,10 @@ build_and_push_dev_image() {
     ./build.sh
 
     # Tag the built image
-    docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_HUB_USERNAME/$DOCKER_IMAGE_NAME:dev
+    docker tag myreactimg  $DOCKERHUB_USERNAME/dev
 
     # Push the tagged image to dev repo on Docker Hub
-    docker push $DOCKER_HUB_USERNAME/$DOCKER_IMAGE_NAME:dev
+    docker push $DOCKERHUB_USERNAME/dev
 }
 
 # Check if the branch is dev
