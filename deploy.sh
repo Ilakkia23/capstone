@@ -6,19 +6,37 @@ build_and_push_dev_image() {
     docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
     # Run build script to build Docker image
-    ./build.sh
+    sh 'chmod +x build.sh'
+    sh './build.sh'
 
     # Tag the built image
-    docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_HUB_USERNAME/$DOCKER_IMAGE_NAME:dev
+    docker tag myreactimg  $DOCKERHUB_USERNAME/dev
 
     # Push the tagged image to dev repo on Docker Hub
-    docker push $DOCKER_HUB_USERNAME/$DOCKER_IMAGE_NAME:dev
+    docker push $DOCKERHUB_USERNAME/dev
+}
+build_and_push_prod_image() {
+    # Docker login (replace "your-dockerhub-username" and "your-dockerhub-password" with your credentials)
+    docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+
+    # Run build script to build Docker image
+    sh 'chmod +x build.sh'
+    sh './build.sh'
+
+    # Tag the built image
+    docker tag myreactimg  $DOCKERHUB_USERNAME/prod
+
+    # Push the tagged image to dev repo on Docker Hub
+    docker push $DOCKERHUB_USERNAME/prod
 }
 
 # Check if the branch is dev
-if [ "$BRANCH_NAME" = "dev" ]; then
+if [ $GIT_BRANCH == "origin/dev" ]; then
     echo "Building and deploying to dev branch..."
     build_and_push_dev_image
+elif [ $GIT_BRANCH == "origin/main" ]; then
+    echo "Building and deploying to dev branch..."
+    build_and_push_prod_image
 else
     echo "Branch is not dev. No deployment will be done."
 fi
